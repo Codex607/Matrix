@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix - Your eSports Command Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cube"></i>
+                <span>Matrix</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#commands" class="nav-link">Commands</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <button class="login-btn" onclick="showLoginModal()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hex-pattern"></div>
+            <div class="glow-lines"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Matrix: Your eSports Command Center</h1>
+            <p class="hero-subtitle">Seamlessly run tournaments, manage teams, and track stats. All from within Discord.</p>
+            <div class="hero-cta">
+                <button class="cta-primary">
+                    <i class="fab fa-discord"></i>
+                    Invite Matrix
+                </button>
+                <button class="cta-secondary">
+                    <i class="fas fa-play"></i>
+                    Watch Demo
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="discord-mockup">
+                    <div class="discord-header">
+                        <div class="discord-controls">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="discord-title">#tournament-central</span>
+                    </div>
+                    <div class="discord-content">
+                        <div class="message">
+                            <div class="avatar"></div>
+                            <div class="message-content">
+                                <span class="username">TournamentAdmin</span>
+                                <p>!matrix bracket create single 16</p>
+                            </div>
+                        </div>
+                        <div class="message bot-message">
+                            <div class="avatar bot-avatar"></div>
+                            <div class="message-content">
+                                <span class="username bot-username">Matrix Bot</span>
+                                <div class="bracket-preview">
+                                    <p>✅ Tournament bracket created successfully!</p>
+                                    <div class="bracket-visual">
+                                        <div class="bracket-round">
+                                            <div class="match">Team A vs Team B</div>
+                                            <div class="match">Team C vs Team D</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Level Up Your eSports Community</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Tournament Brackets</h3>
+                    <p>Generate and manage single or double-elimination brackets with ease. Real-time updates for every match.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Management</h3>
+                    <p>Create teams, assign roles, and track player performance with dedicated team profiles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Stat Tracking</h3>
+                    <p>Automatically record and display player stats from your matches, creating leaderboards that fuel competition.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Automated Matchmaking</h3>
+                    <p>Connect players instantly with automated matchmaking based on their rank or skill level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Command Reference Section -->
+    <section id="commands" class="commands">
+        <div class="container">
+            <h2 class="section-title">Master the Matrix</h2>
+            <div class="command-search">
+                <input type="text" id="commandSearch" placeholder="Search commands..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="command-list" id="commandList">
+                <div class="command-item" data-command="setup">
+                    <div class="command-header" onclick="toggleCommand(this)">
+                        <span class="command-name">!matrix setup</span>
+                        <span class="command-description">Initialize Matrix bot and create tournament channel</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="command-details">
+                        <p><strong>Usage:</strong> <code>!matrix setup [tournament-name]</code></p>
+                        <p><strong>Example:</strong> <code>!matrix setup "Spring Championship"</code></p>
+                        <p><strong>Permissions:</strong> Administrator</p>
+                    </div>
+                </div>
+                <div class="command-item" data-command="bracket">
+                    <div class="command-header" onclick="toggleCommand(this)">
+                        <span class="command-name">!matrix bracket create</span>
+                        <span class="command-description">Generate tournament bracket</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="command-details">
+                        <p><strong>Usage:</strong> <code>!matrix bracket create [type] [teams]</code></p>
+                        <p><strong>Types:</strong> single, double</p>
+                        <p><strong>Example:</strong> <code>!matrix bracket create single 16</code></p>
+                    </div>
+                </div>
+                <div class="command-item" data-command="team">
+                    <div class="command-header" onclick="toggleCommand(this)">
+                        <span class="command-name">!matrix team create</span>
+                        <span class="command-description">Create a new team</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="command-details">
+                        <p><strong>Usage:</strong> <code>!matrix team create [team-name] [@captain]</code></p>
+                        <p><strong>Example:</strong> <code>!matrix team create "Cyber Warriors" @player1</code></p>
+                    </div>
+                </div>
+                <div class="command-item" data-command="stats">
+                    <div class="command-header" onclick="toggleCommand(this)">
+                        <span class="command-name">!matrix stats</span>
+                        <span class="command-description">View player or team statistics</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="command-details">
+                        <p><strong>Usage:</strong> <code>!matrix stats [@player|team-name]</code></p>
+                        <p><strong>Example:</strong> <code>!matrix stats @player1</code></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Trusted by Top eSports Communities</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Matrix transformed our Discord server into a professional tournament hub. The automated brackets saved us hours of manual work."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <span class="author-name">ProGamer#1337</span>
+                            <span class="author-role">Tournament Organizer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The stat tracking feature keeps our players engaged and competitive. Best eSports bot we've used!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <span class="author-name">TeamCaptain#2021</span>
+                            <span class="author-role">Team Manager</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Matrix's matchmaking system is incredibly smooth. Our community loves the automated tournaments."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <span class="author-name">ServerOwner#0001</span>
+                            <span class="author-role">Community Leader</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Upgrade Your Arsenal</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/month</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Basic tournament brackets</li>
+                        <li><i class="fas fa-check"></i> Team creation (up to 5)</li>
+                        <li><i class="fas fa-check"></i> Basic stat tracking</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                    </ul>
+                    <button class="pricing-btn">Get Started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$9.99<span>/month</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Unlimited tournaments</li>
+                        <li><i class="fas fa-check"></i> Advanced stat analytics</li>
+                        <li><i class="fas fa-check"></i> Custom branding</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Automated matchmaking</li>
+                    </ul>
+                    <button class="pricing-btn">Upgrade Now</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$29.99<span>/month</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Multi-server management</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                    </ul>
+                    <button class="pricing-btn">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section class="get-started">
+        <div class="container">
+            <h2 class="section-title">Your eSports Legacy Awaits</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Invite Matrix</h3>
+                    <p>Click the "Invite Matrix" button and select your server</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Authorize Bot</h3>
+                    <p>Grant necessary permissions for tournament management</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Gaming</h3>
+                    <p>Type <code>!matrix setup</code> in any channel to begin</p>
+                </div>
+            </div>
+            <button class="cta-primary large">
+                <i class="fab fa-discord"></i>
+                Invite Matrix Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cube"></i>
+                        <span>Matrix</span>
+                    </div>
+                    <p>The ultimate eSports management bot for Discord communities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#commands">Commands</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="/support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-discord"></i> Discord Server</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Matrix Bot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login to Matrix</h2>
+            <div class="login-options">
+                <button class="login-option discord" onclick="loginWithDiscord()">
+                    <i class="fab fa-discord"></i>
+                    Continue with Discord
+                </button>
+                <button class="login-option google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                <form class="email-login" onsubmit="loginWithEmail(event)">
+                    <input type="email" placeholder="Email address" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Sign In</button>
+                </form>
+                <p class="admin-login">
+                    <a href="#" onclick="showAdminLogin()">Admin Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminModal()">&times;</span>
+            <h2>Admin Access</h2>
+            <form class="admin-login-form" onsubmit="adminLogin(event)">
+                <input type="text" placeholder="Admin Username" required>
+                <input type="password" placeholder="Admin Password" required>
+                <input type="text" placeholder="Access Code" required>
+                <button type="submit">Access Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
